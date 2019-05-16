@@ -4,6 +4,7 @@ import org.scalatest.{FlatSpec, Matchers}
 
 class TotalOrderTest extends FlatSpec with Matchers {
   import TotalOrderInstances._
+
   "total order" should "compare ints" in {
     Comparator.less(5, 10) shouldBe true
     Comparator.less(10, 5) shouldBe false
