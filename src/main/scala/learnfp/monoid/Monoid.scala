@@ -1,18 +1,19 @@
 package learnfp.monoid
 
 trait Monoid[A] {
-  def mzero:A
-  def mappend(lhs:A, rhs:A):A
+  def combine(lhs: A, rhs: A): A
+  def empty: A
 }
 
 object Monoid {
-  def mzero[A](implicit monoid:Monoid[A]):A = monoid.mzero
+  def empty[A](implicit monoid: Monoid[A]): A = monoid.empty
 }
 
-class MonoidOps[A](lhs:A)(implicit monoid:Monoid[A]) {
-  def |+|(rhs:A):A = monoid.mappend(lhs, rhs)
+class MonoidOps[A](lhs: A)(implicit monoid: Monoid[A]) {
+  def |+|(rhs: A): A = monoid.combine(lhs, rhs)
 }
 
 object MonoidOps {
-  implicit def toMonoidOps[A](x:A)(implicit monoid:Monoid[A]):MonoidOps[A] = new MonoidOps[A](x)
+  implicit def toMonoidOps[A](x: A)(implicit monoid: Monoid[A]): MonoidOps[A] =
+    new MonoidOps[A](x)
 }
