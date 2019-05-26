@@ -1,7 +1,7 @@
 package learnfp.functor
 
 object ListInstance {
-  implicit val listInstance:Functor[List] = new Functor[List] {
-    override def fmap[A, B](a: List[A])(fx: A => B): List[B] = ???
+  implicit val listInstance: Functor[List] = new Functor[List] {
+    override def fmap[A, B](fa: List[A])(f: A => B): List[B] = fa.map(f)
   }
 }
